@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rann</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Menambahkan font dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Stage 1: Menampilkan tombol dan audio -->
+    <div class="container" id="stage1">
+        <div class="paper" onclick="nextStage(2)">
+            <p>Sebelum Klik Putar Dulu Musik Nya Hehehe...</p>
+        </div>
+        <!-- Menambahkan Audio MP3 di Stage 1 yang berlanjut ke seluruh website -->
+        <audio id="background-audio" autoplay loop>
+            <source src="musik.mp3" type="audio/mp3">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+        <!-- Kontrol audio hanya muncul di Stage 1 -->
+        <div class="audio-controls">
+            <button onclick="toggleAudio()">🎵 Putar/Pause Musik</button>
+        </div>
+    </div>
+
+    <!-- Stage 2: Stage baru yang berisi tulisan dan tombol lanjut -->
+    <div class="container hidden" id="stage2">
+        <p class="new-stage-message">Selamat datang di stage baru! Ini adalah tulisan spesial untukmu, pacarku tercinta.</p>
+        <button onclick="nextStage(3)">Lanjut</button>
+    </div>
+
+    <!-- Stage 3: Ucapan selamat ulang tahun dan foto -->
+    <div class="container hidden" id="stage3">
+        <img class="photo-frame" src="sayang.jpg" alt="Foto Pacar">
+        <p class="message">Selamat ulang tahun! Kamu adalah orang yang sangat spesial dalam hidupku.</p>
+        <button onclick="nextStage(4)">Lanjut</button>
+    </div>
+
+    <!-- Stage 4: Menampilkan foto bersama dengan animasi -->
+    <div class="container hidden" id="stage4">
+        <div class="slideshow">
+            <div class="photo-item animate-photo-1">
+                <img class="photo-frame" src="rannn - Copy.jpg" alt="Foto bersama">
+                <p class="photo-caption">Foto pertama bersama</p>
+            </div>
+            <div class="photo-item animate-photo-2">
+                <img class="photo-frame" src="rannn - Copy.jpg" alt="Foto bersama">
+                <p class="photo-caption">Kenangan indah kedua</p>
+            </div>
+            <div class="photo-item animate-photo-3">
+                <img class="photo-frame" src="rannn - Copy.jpg" alt="Foto bersama">
+                <p class="photo-caption">Momen spesial yang tak terlupakan</p>
+            </div>
+        </div>
+        <button onclick="nextStage(5)">Lanjut</button>
+    </div>
+
+    <!-- Stage 5: Pesan romantis -->
+    <div class="container hidden" id="stage5">
+        <p class="romantic-text">Aku bersyukur setiap hari memiliki kamu di hidupku. Selamat ulang tahun, cintaku!</p>
+    </div>
+
+    <script>
+        let currentStage = 1;
+
+        function nextStage(stage) {
+            document.getElementById(`stage${currentStage}`).style.display = 'none';
+            document.getElementById(`stage${stage}`).style.display = 'flex';
+            currentStage = stage;
+        }
+
+        // Mengatur agar Stage 1 muncul pertama kali
+        document.getElementById('stage1').style.display = 'flex';
+
+        // Pastikan audio tetap diputar sepanjang sesi
+        const audioElement = document.getElementById('background-audio');
+        audioElement.loop = true; // Memastikan audio berulang
+
+        // Fungsi untuk toggle putar/pause musik
+        function toggleAudio() {
+            if (audioElement.paused) {
+                audioElement.play(); // Putar musik
+            } else {
+                audioElement.pause(); // Pause musik
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #stage1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #stage1 .paper {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: 4px double #e91e63;
+            width: 350px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(145deg, #ffe4e1, #ffcccc);
+            transform: rotate(-5deg);
+        }
+
+        #stage1 .paper:before {
+            content: '\2665';
+            color: #e91e63;
+            font-size: 80px;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        img.photo-frame {
+            max-width: 250px;
+            border: 8px solid #e91e63;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .new-stage-message {
+            font-size: 22px;
+            color: #e91e63;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 20px;
+        }
+
+        .romantic-text {
+            font-size: 24px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #ff6b81;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        button:hover {
+            background: #ff4757;
+        }
+
+        /* Gambar pada stage 4 */
+        .slideshow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        .photo-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .animate-photo-1 {
+            animation-name: slideInFromTop1;
+            animation-delay: 0s;
+        }
+
+        .animate-photo-2 {
+            animation-name: slideInFromTop2;
+            animation-delay: 0.5s;
+        }
+
+        .animate-photo-3 {
+            animation-name: slideInFromTop3;
+            animation-delay: 1s;
+        }
+
+        .photo-caption {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        @keyframes slideInFromTop1 {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromTop2 {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromTop3 {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Kontrol audio di Stage 1 */
+        .audio-controls {
+            margin-top: 20px;
+        }
+
+        .audio-controls button {
+            padding: 10px 20px;
+            background: #ff6b81;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .audio-controls button:hover {
+            background: #ff4757;
+        }
+    </style>
+</body>
+</html>
